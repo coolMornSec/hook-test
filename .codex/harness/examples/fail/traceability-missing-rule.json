@@ -1,0 +1,9 @@
+[
+  {
+    "requirementId": "REQ-001",
+    "skillId": "frontend-architecture",
+    "ruleIds": [],
+    "artifact": "docs/design.md#D-001",
+    "verification": "missing rule id should fail"
+  }
+]

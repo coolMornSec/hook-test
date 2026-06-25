@@ -1,0 +1,18 @@
+{
+  "required": [
+    "id",
+    "severity",
+    "evidence",
+    "location",
+    "correction",
+    "verification"
+  ],
+  "properties": {
+    "id": "stable issue id such as DOC-001 or CR-001",
+    "severity": "BLOCKER, MAJOR, or MINOR",
+    "evidence": "requirement id, skill rule, file path, screenshot, console error, or network record",
+    "location": "document section, file path, line number, or browser step",
+    "correction": "specific change required",
+    "verification": "specific command or manual validation step after correction"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "required": [
+    "requirementId",
+    "skillId",
+    "ruleIds",
+    "artifact",
+    "verification"
+  ],
+  "properties": {
+    "requirementId": "stable requirement atom id such as REQ-001",
+    "skillId": "registered skill name",
+    "ruleIds": "array of concrete skill rule ids or stable section ids",
+    "artifact": "file path, design section, code path, or validation evidence path",
+    "verification": "command, review issue id, browser evidence id, or explicit blocked reason"
+  }
+}

@@ -1,0 +1,291 @@
+{
+  "version": 2,
+  "mode": "block",
+  "requireEvidenceSection": true,
+  "evidenceSectionTitle": "技能使用证据",
+  "injectAntiPatternsEveryPrompt": true,
+  "antiPatternsFile": ".codex/harness/anti-patterns.md",
+  "acceptTranscriptEvidence": false,
+  "acceptFinalClaimAsEvidence": false,
+  "avoidInfiniteStopLoop": true,
+  "allowNegatedForbiddenPhrases": true,
+  "forbiddenPhraseNegationWindow": 16,
+  "activationPhrases": [
+    "根据Harness规范",
+    "按照Harness规范",
+    "基于Harness规范",
+    "按Harness规范",
+    "根据 harness 规范",
+    "according to Harness"
+  ],
+  "receipt": {
+    "enabled": true,
+    "requiredFields": [
+      "skillId",
+      "version",
+      "loadedFiles",
+      "evidenceSource",
+      "phase",
+      "loadedAt"
+    ]
+  },
+  "artifactSchemas": {
+    "skillReceipt": ".codex/harness/schema/skill-receipt.schema.json",
+    "traceability": ".codex/harness/schema/traceability.schema.json",
+    "reviewIssue": ".codex/harness/schema/review-issue.schema.json",
+    "browserValidation": ".codex/harness/schema/browser-validation.schema.json"
+  },
+  "phaseGates": {
+    "initial-design": {
+      "requiredArtifacts": [
+        ".codex/harness/artifacts/requirement-atoms.json",
+        ".codex/harness/artifacts/skill-matrix.json",
+        ".codex/harness/artifacts/skill-receipts.json"
+      ],
+      "requiredFinalPhrases": [
+        "需求原子",
+        "技能矩阵",
+        "技能使用证据"
+      ]
+    },
+    "document-review": {
+      "requiredArtifacts": [
+        ".codex/harness/artifacts/doc-review.json"
+      ],
+      "requiredFinalPhrases": [
+        "需求一致性",
+        "技能规则",
+        "纠偏"
+      ]
+    },
+    "development": {
+      "requiredArtifacts": [
+        ".codex/harness/artifacts/implementation-context-pack.json",
+        ".codex/harness/artifacts/implementation-evidence.json"
+      ],
+      "requiredFinalPhrases": [
+        "组件职责",
+        "类型定义",
+        "验证"
+      ]
+    },
+    "code-review": {
+      "requiredArtifacts": [
+        ".codex/harness/artifacts/code-review.json"
+      ],
+      "requiredFinalPhrases": [
+        "需求符合性",
+        "设计符合性",
+        "最佳实践"
+      ]
+    },
+    "browser-validation": {
+      "requiredArtifacts": [
+        ".codex/harness/artifacts/browser-validation.json"
+      ],
+      "requiredFinalPhrases": [
+        "用户确认进入浏览器验证",
+        "截图",
+        "console",
+        "network"
+      ]
+    }
+  },
+  "phaseTransitions": {
+    "browser-validation": {
+      "requiresUserConfirmation": true,
+      "confirmationPhrase": "用户确认进入浏览器验证"
+    }
+  },
+  "reviewQuality": {
+    "requiredIssueFields": [
+      "id",
+      "severity",
+      "evidence",
+      "location",
+      "correction",
+      "verification"
+    ],
+    "allowedSeverities": [
+      "BLOCKER",
+      "MAJOR",
+      "MINOR"
+    ]
+  },
+  "rules": [
+    {
+      "id": "harness-governance",
+      "whenPromptMatches": [
+        "根据Harness规范",
+        "按照Harness规范",
+        "基于Harness规范",
+        "按Harness规范",
+        "根据 harness 规范",
+        "according to Harness"
+      ],
+      "requiredSkills": [
+        "skill-reference-governance",
+        "artifact-review-governance"
+      ]
+    },
+    {
+      "id": "plan-grilling",
+      "whenPromptMatches": [
+        "grill",
+        "grilling",
+        "stress-test",
+        "stress test",
+        "追问",
+        "拷问",
+        "盘问",
+        "压测方案",
+        "方案压测",
+        "压测设计",
+        "设计压测"
+      ],
+      "requiredSkills": [
+        "grilling"
+      ]
+    },
+    {
+      "id": "vue-router-design",
+      "whenPromptMatches": [
+        "vue-router",
+        "router",
+        "路由",
+        "文件式路由",
+        "vite-plugin-pages",
+        "@vue-router/unplugin"
+      ],
+      "requiredSkills": [
+        "magus-frontend-vue-guide"
+      ]
+    },
+    {
+      "id": "frontend-business-development",
+      "whenPromptMatches": [
+        "前端",
+        "Vue3",
+        "Vue",
+        "组件",
+        "页面",
+        "Composable",
+        "接口类型",
+        "types",
+        "Element Plus"
+      ],
+      "requiredSkills": [
+        "magus-frontend-vue-guide",
+        "magus-framework-ui"
+      ]
+    },
+    {
+      "id": "frontend-skeleton-architecture",
+      "whenPromptMatches": [
+        "新建前端项目",
+        "初始化前端",
+        "前端骨架",
+        "微前端骨架",
+        "VITE_APP_BASE",
+        "VITE_APP_PORT",
+        "VITE_APP_SERVER_URL",
+        "VITE_APP_FRAME",
+        "mountElementId",
+        "init-skeleton"
+      ],
+      "requiredSkills": [
+        "magus-frontend-architecture"
+      ]
+    }
+  ],
+  "skills": {
+    "skill-reference-governance": {
+      "requiredReadFiles": [
+        "SKILL.md"
+      ],
+      "outputMustContain": [
+        "skillId",
+        "ruleId",
+        "技能使用证据"
+      ],
+      "outputMustNotContain": [
+        "我大概参考了"
+      ],
+      "outputMustMatchRegex": []
+    },
+    "artifact-review-governance": {
+      "requiredReadFiles": [
+        "SKILL.md"
+      ],
+      "outputMustContain": [
+        "需求符合性",
+        "纠偏",
+        "验证"
+      ],
+      "outputMustNotContain": [
+        "看起来没问题"
+      ],
+      "outputMustMatchRegex": []
+    },
+    "grilling": {
+      "requiredReadFiles": [
+        "SKILL.md"
+      ],
+      "outputMustContain": [
+        "推荐答案",
+        "等待反馈"
+      ],
+      "outputMustNotContain": [
+        "一次性问题清单"
+      ],
+      "outputMustMatchRegex": []
+    },
+    "magus-frontend-vue-guide": {
+      "requiredReadFiles": [
+        "SKILL.md",
+        "references/file-based-routing.md",
+        "references/type-definition-standard.md",
+        "references/module-development-standard.md"
+      ],
+      "outputMustContain": [
+        "组件职责",
+        "类型定义",
+        "验证"
+      ],
+      "outputMustNotContain": [
+        "裸 any",
+        "跳过验证"
+      ],
+      "outputMustMatchRegex": []
+    },
+    "magus-framework-ui": {
+      "requiredReadFiles": [
+        "SKILL.md",
+        "references/ui-manifest.md"
+      ],
+      "outputMustContain": [
+        "组件职责",
+        "组件选择",
+        "来源文件"
+      ],
+      "outputMustNotContain": [
+        "杜撰组件 API"
+      ],
+      "outputMustMatchRegex": []
+    },
+    "magus-frontend-architecture": {
+      "requiredReadFiles": [
+        "SKILL.md"
+      ],
+      "outputMustContain": [
+        "配置确认",
+        "init-skeleton",
+        "验证"
+      ],
+      "outputMustNotContain": [
+        "手工新建骨架"
+      ],
+      "outputMustMatchRegex": []
+    }
+  }
+}

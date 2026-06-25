@@ -1,0 +1,18 @@
+{
+  "required": [
+    "skillId",
+    "version",
+    "phase",
+    "loadedFiles",
+    "evidenceSource",
+    "loadedAt"
+  ],
+  "properties": {
+    "skillId": "registered skill name",
+    "version": "skill version or unknown when the skill file has no version",
+    "phase": "initial-design, document-review, development, code-review, browser-validation, or unknown",
+    "loadedFiles": "array of absolute file paths observed by PostToolUse or transcript evidence",
+    "evidenceSource": "tool event, transcript, or final output claim",
+    "loadedAt": "UTC timestamp"
+  }
+}

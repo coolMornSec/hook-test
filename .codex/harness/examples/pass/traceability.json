@@ -1,0 +1,11 @@
+[
+  {
+    "requirementId": "REQ-001",
+    "skillId": "frontend-architecture",
+    "ruleIds": [
+      "HARD-GATE:开发前配置确认"
+    ],
+    "artifact": "docs/design.md#D-001",
+    "verification": "check-traceability passed"
+  }
+]

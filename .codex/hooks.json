@@ -1,0 +1,44 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .codex/hooks/skill_gate.py",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$OutputEncoding = [System.Text.UTF8Encoding]::new($false); [Console]::OutputEncoding = $OutputEncoding; python3 .codex\\hooks\\skill_gate.py\"",
+            "timeout": 30,
+            "statusMessage": "Skill gate: selecting required skills"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|apply_patch|Edit|Write|mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .codex/hooks/skill_gate.py",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$OutputEncoding = [System.Text.UTF8Encoding]::new($false); [Console]::OutputEncoding = $OutputEncoding; python3 .codex\\hooks\\skill_gate.py\"",
+            "timeout": 30,
+            "statusMessage": "Skill gate: auditing skill evidence"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .codex/hooks/skill_gate.py",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$OutputEncoding = [System.Text.UTF8Encoding]::new($false); [Console]::OutputEncoding = $OutputEncoding; python3 .codex\\hooks\\skill_gate.py\"",
+            "timeout": 30,
+            "statusMessage": "Skill gate: validating final output"
+          }
+        ]
+      }
+    ]
+  }
+}

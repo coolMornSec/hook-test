@@ -1,0 +1,22 @@
+{
+  "required": [
+    "page",
+    "steps",
+    "expected",
+    "actual",
+    "console",
+    "network",
+    "screenshots",
+    "result"
+  ],
+  "properties": {
+    "page": "validated URL or route",
+    "steps": "ordered interaction steps",
+    "expected": "expected behavior",
+    "actual": "observed behavior",
+    "console": "console error and warning summary",
+    "network": "failed request summary",
+    "screenshots": "screenshot paths",
+    "result": "PASS, FAIL, or BLOCKED"
+  }
+}
